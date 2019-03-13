@@ -479,14 +479,12 @@ class DharmaMachine:  # pylint: disable=too-many-instance-attributes
         for _ in range(random.randint(DharmaConst.VARIANCE_MIN, DharmaConst.VARIANCE_MAX)):
             var = random.choice(list(self.variance.values()))
             variances.append(DharmaConst.VARIANCE_TEMPLATE % var.generate(GenState()))
-            variances.append("\n")
 
         # Handle variables
         variables = []
         for var in self.variable.values():
             if var.default:
-                variables.append(DharmaConst.VARIANCE_TEMPLATE % var.default)
-                variables.append("\n")
+                variables.append(var.default)
 
         # Build content
         content = "".join(chain([self.prefix], variables, variances, [self.suffix]))
